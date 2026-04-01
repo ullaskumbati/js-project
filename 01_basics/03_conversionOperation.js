@@ -1,11 +1,11 @@
 let score = null
 
-console.log(typeof score);
-console.log(typeof(score));
+// console.log(typeof score);
+// console.log(typeof(score));
 
 let valueInNumber = Number(score);
-console.log(valueInNumber)
-console.log(typeof valueInNumber);
+// console.log(valueInNumber)
+// console.log(typeof valueInNumber);
 
 // "33" => 33
 // "33 abc" => NaN
@@ -15,9 +15,14 @@ console.log(typeof valueInNumber);
 let loggedIn = 1;
 
 let booleanValue = Boolean(loggedIn);
-console.log(booleanValue);
+// console.log(booleanValue);
 
 // 1 => true; 0 => false
 //  "" => false
 //  "ullas" => true
+
+
+let value = 3;
+let negValue = -value;
+// console.log(negValue);
 
