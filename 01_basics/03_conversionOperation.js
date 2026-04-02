@@ -26,3 +26,19 @@ let value = 3;
 let negValue = -value;
 // console.log(negValue);
 
+
+
+  const { user } = useAuthContext();
+  const [highlightedIndex, setHighlightedIndex] = useState(null);
+  const [secName, setSecName] = useState("");
+  const [canMountEditor, setCanMountEditor] = useState(false);
+  const { dbConfigData } = useContext(DataContext);
+
+  const enableFile =
+    dbConfigData && dbConfigData.length > 0
+      ? dbConfigData[0].disable_doc
+      : null;
+  const xlGen =
+    dbConfigData && dbConfigData.length > 0 ? dbConfigData[0].xlGen : null;
+  const qEdit =
+    dbConfigData && dbConfigData.length > 0 ? dbConfigData[0].qEdit : null;
