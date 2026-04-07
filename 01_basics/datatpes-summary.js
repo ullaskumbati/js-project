@@ -28,3 +28,10 @@ console.log("kdkadasd");
 }
 
 console.log(typeof myFunction )
+const bigNumber1 = 123455563434345545464656645n
+
+const heroes2 = ["shakthiman","naagraj","doga"]
+let var13 ={
+    name: "ullas",
+    age: 22,
+}
