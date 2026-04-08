@@ -35,3 +35,26 @@ let var13 ={
     name: "ullas",
     age: 22,
 }
+
+// stack memory: primitive data type
+// heap memory : non primitive dtaa type
+
+let myName = "ullas kumbati";
+
+let anotherName = myName;
+anotherName = "new name";
+
+console.log(myName);
+console.log(anotherName);
+
+
+let user1 = {
+    email:"user@google.com",
+    upi:"user@ybl"
+}
+
+let user2 =user1;
+
+user2.email = "ullas@google.com";
+console.log(user1.email);
+console.log(user2.email);
