@@ -19,136 +19,54 @@ console.log(Math.abs(-4));
 console.log(Math.round(4.6));
 console.log(Math.ceil(4.2));
 
+return (
+  <div className="recent-changes-section">
+    <h4 className="recent-changes-title">Recent Changes</h4>
+{groupedChanges.map((group) => (
+  <div key={`cycle-${group.cycleNumber}`} style={{ marginBottom: "20px" }}>
 
+    <table className="recent-changes-table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Old Value</th>
+          <th>New Value</th>
+          <th>Changed On</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        {group.items.map((change, idx) => (
+          <tr key={`${group.cycleNumber}-${idx}`}>
+            <td>
+              {change.isCustomForm ? (
+                <>
+                  {change.questionName}
+                  <br />
+                  <small>
+                    {change.sectionName} → {change.label}
+                  </small>
+                </>
+              ) : (
+                change.questionName
+              )}
+            </td>
 
-const buildMetaMap = ({ questions, columns, rowMap, sectionMap }) => {
-  const map = {};
+            <td className="old-value-cell">
+              {change.oldValue || "-"}
+            </td>
 
-  questions.forEach(q => {
-    const key = `${q._id}_`;
-    map[key] = {
-      questionName: q.questionName,
-      isCustom: false,
-    };
-  });
+            <td className="new-value-cell">
+              {change.newValue || "-"}
+            </td>
 
-  columns.forEach(c => {
-    const row = rowMap[c.rowId?.toString()];
-    const sectionId = row?.customFormSectionId?.toString();
-
-    const key = `${c._id}_${c.rowId || ""}_${c._id}`;
-
-    map[key] = {
-      questionName: "Custom Form",
-      isCustom: true,
-      sectionName: sectionMap[sectionId] || "Section",
-      label: c.questionName || "Field",
-    };
-  });
-
-  return map;
-};
-const prepareMetaData = async (gid, db) => {
-  const {
-    GuidedCustomFromRow,
-    GuidedCustomFromSection,
-  } = db;
-
-  // 1. Fetch rows
-  const rows = await GuidedCustomFromRow.find({ guidedId: gid }).lean();
-
-  const rowMap = Object.fromEntries(
-    rows.map(r => [r._id.toString(), r])
-  );
-
-  // 2. Fetch sections
-  const sectionIds = rows
-    .map(r => r.customFormSectionId)
-    .filter(Boolean);
-
-  const sections = await GuidedCustomFromSection.find({
-    guidedId: gid,
-    _id: { $in: sectionIds },
-  }).lean();
-
-  const sectionMap = Object.fromEntries(
-    sections.map(s => [s._id.toString(), s.name])
-  );
-
-  return {
-    rowMap,
-    sectionMap,
-  };
-};
-const submitGuidedAnswers = async (req, res) => {
-  const { guidedId, cycleNumber } = req.body;
-
-  const gid = new mongoose.Types.ObjectId(guidedId);
-  const dbName = req.dbName || req.socket?.handshake?.auth?.dbName;
-const db = await getDbConnection(dbName);
-
-const {
-  GuidedQuestions,
-  GuidedCustomFromColumn,
-  AnswerSnapShots
-} = db;
-
-  // 1. Get current answers
-  const questions = await GuidedQuestions.find({ guidedId: gid }).lean();
-  const columns = await GuidedCustomFromColumn.find({ guidedId: gid }).lean();
-
-  const currentAnswers = [
-    ...questions.map(q => ({
-      questionId: q._id.toString(),
-      value: q.answer,
-    })),
-    ...columns.map(c => ({
-      questionId: c._id.toString(),
-      value: c.answer,
-      rowId: c.rowId?.toString(),
-      columnId: c._id.toString(),
-    }))
-  ];
-
-  // 2. Save snapshot
-  await AnswerSnapShots.create({
-    guidedId: gid,
-    cycleNumber,
-    answers: currentAnswers,
-  });
-
-  // 3. If cycle > 1 → compare
-if (cycleNumber > 1) {
-  const prev = await AnswerSnapShots.findOne({
-    guidedId: gid,
-    cycleNumber: cycleNumber - 1,
-  }).lean();
-
-  if (!prev) {
-    return res.json({
-      status: "Success",
-      message: "No previous snapshot found",
-    });
-  }
-
-  const meta = await prepareMetaData(gid, db);
-
-  const metaMap = buildMetaMap({
-    questions,
-    columns,
-    ...meta
-  });
-
-  const changes = buildChanges(
-    prev.answers,
-    currentAnswers,
-    metaMap
-  );
-
-  console.log("FINAL CHANGES:", changes);
-}
-
-  return res.json({ status: "Success" });
-};
+            <td>{formatDate(change.changedAt)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+))}
+  </div>
+);
 
