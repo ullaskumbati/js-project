@@ -19,6 +19,13 @@ const real_another_array = another_array.flat(1);
 
 console.log(Array.isArray([1,2]));
 console.log(Array.from("ullas"));
-console.log(Array.from("ullas"));
+console.log(Array.from({name:"ullas"}));// interesting 
+
+
+let score1 = 100;
+let score2 = 200;
+let score3 = 300;
+
+console.log(Array.of(score1,score2,score3));
 
 
