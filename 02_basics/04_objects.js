@@ -49,8 +49,24 @@ const users = [
         email:"h@gmail.com"
     },
 ]
-console.log(users[1].email);
+// console.log(users[1].email);
 
-console.log(tinderUser);
-console.log(Object.keys(users));
-console.log(Object.values(tinderUser));
+// console.log(tinderUser);
+// console.log(Object.keys(users));
+// console.log(Object.values(tinderUser));
+
+
+const course ={
+    courseName: "js in hindi",
+    price: "999",
+    courseInstructor:"hitesh"
+}
+
+const {courseInstructor:instructor} = course;
+console.log(instructor)
+
+// {
+//     "name":"ullas",
+//     "courseName":"js in hindi",
+//     "price":"free"
+// }
