@@ -28,6 +28,13 @@ const chai = ()=>{
 // const addTwo = (num1, num2)=>{
 //     return num1 + num2
 // }
-const addTwo = (num1, num2)=> num1 + num2
+// const addTwo = (num1, num2)=> num1 + num2
+// const addTwo = (num1, num2)=> (num1 + num2)
+const addTwo = (num1, num2)=> ({userName:"ullas"})
 
-console.log(addTwo(3,4));
+
+
+console.log(addTwo());
+
+// const myArray = [2,5,3,4,6];
+
