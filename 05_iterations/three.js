@@ -12,5 +12,13 @@ for(const greet of gretings){
     if(greet == " "){
         continue;
     }
-    console.log(greet);
+    // console.log(greet);
 }
+
+// Maps
+
+const map = new Map();
+map.set('IN',"India");
+map.set('usa',"United states of america");
+
+console.log(map);
