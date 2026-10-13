@@ -29,3 +29,5 @@ const data = users.map((i)=>{
     return i.name;
 })
 console.log(data);
+
+console.log('2'===2);
