@@ -31,3 +31,15 @@ const data = users.map((i)=>{
 console.log(data);
 
 console.log('2'===2);
+
+
+const userse = [
+  { id: 1, name: "Rahul" },
+  { id: 2, name: "Priya" },
+  { id: 3, name: "Amit" }
+];
+
+const op = users.map((user)=>{
+    return user.name;
+})
+console.log(op);
