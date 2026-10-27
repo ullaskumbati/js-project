@@ -1,0 +1,8 @@
+
+* Once the bowser recives html document it will prepare a dom using dom tree and reconstructs layout and paints pixels on screen
+* what user see is the main dom painted with pixels
+* Earlier direct dom manuplation would take place resulting in slowness because again everything on direct dom tree would be manuplated and again repainted with pixcels
+* what js frawork did is introduced virtual dom concepts where the changes will be updated to previous copy of virtual dom and through reconcilation comparision will happen with previous copy of dom 
+* only the slight changes will be updated to to main dom through diffing strategy so that only the changes will be updated to main dom and only that changed parts will be repainted with pixcels
+* we can optimize how fast we can prepare virtual dom depending on how many components we are rendering
+* we can also optimize how fast layout is prepared and pixels are painted which are browsers capabilty
