@@ -1,4 +1,14 @@
 
+Basic flow:
+
+*when you visit a website or webapplication browser downloads html, css and javascript files and stores it in browsers cache and feeds it immediatly to ram
+* once you close the tab it will be removed from ram 
+* if you refresh it will ask the server whether app.js has changed if not it will fetch again from browsers cache and feed to ram
+* the browsers cahce stroage will be desided by the https response header or once the storage exceeds the browser will automatically delete the least used files 
+
+then the normal dom creation from html files start
+
+
 * Once the bowser recives html document it will prepare a dom using dom tree and reconstructs layout and paints pixels on screen
 * what user see is the main dom painted with pixels
 * Earlier direct dom manuplation would take place resulting in slowness because again everything on direct dom tree would be manuplated and again repainted with pixcels
@@ -6,3 +16,15 @@
 * only the slight changes will be updated to to main dom through diffing strategy so that only the changes will be updated to main dom and only that changed parts will be repainted with pixcels
 * we can optimize how fast we can prepare virtual dom depending on how many components we are rendering
 * we can also optimize how fast layout is prepared and pixels are painted which are browsers capabilty
+
+
+UseEffect:
+
+* react executes in 2 phase synchronous dom modifications and asynchronous effect shceduling
+* so react executes it virtual dom prepare=ation and compares with previous virtual dom and by diffing it updates real dom and is sent to painting meanwhile till all these process executes it will keep effects(useEffect) in backup effect queue once the painiting is done it will pick up effects which are in queue to perform it
+* Once the dom is created through virtual dom react gives control to browser engine to prepare layout and paint meanwhile react will hold effects in its effect queue storage once the green signal comes from browser engine then react passes on the effects which are in effect queue
+
+useLayoutEffect:
+
+*used to stop flickering basically it is exceuted after layout build by brwser engine but before painting is useEffect is non blocking this one is blocking 
+* if in useEffect user can see a spot of flick somewhere on screen its becasue its working after painting the screen but useLayoutEffect comes after main dom is preapared and is ready to be picked up byt browsers engine for layout build and painting so it removes that one point flick since it runs before the paint it is disadvantagious and most of the time it is better to use useEffect
