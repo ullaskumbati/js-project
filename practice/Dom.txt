@@ -28,3 +28,8 @@ useLayoutEffect:
 
 *used to stop flickering basically it is exceuted after layout build by brwser engine but before painting is useEffect is non blocking this one is blocking 
 * if in useEffect user can see a spot of flick somewhere on screen its becasue its working after painting the screen but useLayoutEffect comes after main dom is preapared and is ready to be picked up byt browsers engine for layout build and painting so it removes that one point flick since it runs before the paint it is disadvantagious and most of the time it is better to use useEffect
+
+React Suspense:
+
+Instead of waiting for entire pages data block to load or block server response we wrap slow components in <Suspense fallback ={}>
+* untill the data comes from server the user can view the fall back suspense once the data loads it can swap with fallback
