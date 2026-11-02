@@ -33,3 +33,12 @@ React Suspense:
 
 Instead of waiting for entire pages data block to load or block server response we wrap slow components in <Suspense fallback ={}>
 * untill the data comes from server the user can view the fall back suspense once the data loads it can swap with fallback
+
+* basically lazy loaded compnenents throw a promise upwords if the data needed for them isnt reached yet what suspense does is catches that promise and returns a fallback ui untill that promise resolves after getting the necessary data, once it gets the necessary data rendering continues as usual
+
+React.memo:
+
+* So all child components re render once the parent re renders, so to stop this recat.memo came into picture
+* what is does is unless and untill the props passed from parents changes it doesnt rerender the components
+* if you pass function as props and use react.memo the its of no use since react allowcates new memory to functions on every render, react.memo thinks as the values of props have changed and rerenders the component, putting use of react.memo to 0 use
+* so always pair up useCallback( best friend for react.memo) so that react doesnt alowcate new memory to functions and react.memo doesnt catch it as props change
