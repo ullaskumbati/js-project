@@ -42,3 +42,21 @@ React.memo:
 * what is does is unless and untill the props passed from parents changes it doesnt rerender the components
 * if you pass function as props and use react.memo the its of no use since react allowcates new memory to functions on every render, react.memo thinks as the values of props have changed and rerenders the component, putting use of react.memo to 0 use
 * so always pair up useCallback( best friend for react.memo) so that react doesnt alowcate new memory to functions and react.memo doesnt catch it as props change
+
+<BrowserRouter> and <Route>
+
+BrowserRouter:
+
+* It listens to the change in routes in address bar of browser through html 5 history api
+* It provides routing context to the rest of your app
+
+Router:
+
+* routes matches the route from the address bar and passes to perticular route, it looks through all the child <Route> elements
+
+Memory leak prevention:
+cause:
+* when a user enteres a component and useEffect triggers an api call and before that response comes and sets the user goes to other component deleting bthat components dom tree, the req that is still in flight will comeback with data but not to find any dom or fiber for that dom to set the data resulting in memory leak
+
+how to prevent:
+* by using abort controller or tanstack query how we use it for race condition 
