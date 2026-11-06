@@ -14,3 +14,22 @@ for(const item of arr){
 }
 
 console.log(result2);
+
+
+// 
+//Remove duplicates without changing order
+const arr2 = [1,2,2,3,4,5,6,6,7,7,8];
+
+const result222 = [...new Set(arr)];
+console.log(result);
+
+//dont use set 
+
+const result22 = [];
+for(const item of arr){
+    if(!result2.includes(item)){
+        result2.push(item);
+    }
+}
+
+console.log(result2);
