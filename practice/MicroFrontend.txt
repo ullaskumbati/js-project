@@ -8,3 +8,15 @@ Micro frotend:
 * each of this individual apps have their seperate deplyemnt cycle code base and maintainance 
 
 module federation acts as a glue that brings everything together
+
+
+Module federation :
+
+*Module federation works in 2 parts 
+1. it holds the skeleton for the one huge monolithic skeleton or shell which it will display to the user initially
+2. once the user hits or navigates /profile or other components then those microfrontends bundles will be downlaoded and made visible to the user
+
+There are some chanllenges in microfrontends
+1. css and stylingb collison 
+2. global state isolation
+3. network waterfalls
