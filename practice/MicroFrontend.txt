@@ -1,0 +1,6 @@
+Micro frotend:
+
+*basically once the project gets bulkier the js bundle sent to browsers engine once the url is requested gets heavy and user falls in wite screen of death
+* To stop that we split the bulkier components code into chunks using Module federation 
+
+* its basically building individual small apps based on functionalities instead of huge monolithic react app
