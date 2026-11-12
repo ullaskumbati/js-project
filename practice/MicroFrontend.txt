@@ -4,3 +4,7 @@ Micro frotend:
 * To stop that we split the bulkier components code into chunks using Module federation 
 
 * its basically building individual small apps based on functionalities instead of huge monolithic react app
+
+* each of this individual apps have their seperate deplyemnt cycle code base and maintainance 
+
+module federation acts as a glue that brings everything together
