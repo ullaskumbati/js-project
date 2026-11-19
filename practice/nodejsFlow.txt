@@ -1,0 +1,8 @@
+Flow of Nodejs:
+
+* so once the api is hit an api javascript runs a synchronous code on call stack where eventloop superwises it 
+* while synchronous code is running on call stack event loop adds process.nexttick to tickque and tasks to taskQueue(microtask{promise.resolve.then()} and macrotask{setTimeout}) and I/O and async functions to libuv(so that main thread doesnt get fried) and scheduels a callback for call stack execution
+* once synchronous code is executed it flushes tick queue and task queue later from callback of libuv it executes it on callstack 
+* once the code is executed the result is sent back by res.json or res.send to frontend
+
+so node runtime apis register those call back queues event loop just pulls the next ready call back once the current call stack frame clears
